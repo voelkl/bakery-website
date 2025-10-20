@@ -1,0 +1,318 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #C41E3A;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
+}
+
+.nav-logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #FFB3BA;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(196, 30, 58, 0.85), rgba(196, 30, 58, 0.85)),
+                url('../images/hero-bg.jpg') center/cover;
+    background-color: #C41E3A;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: white;
+    color: #C41E3A;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid white;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+/* Intro Section */
+.intro {
+    padding: 60px 20px;
+    background-color: #FFFFFF;
+}
+
+.intro h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #C41E3A;
+}
+
+.intro > .container > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: #FFF5F5;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(196, 30, 58, 0.1);
+    border: 1px solid #FFE5E8;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(196, 30, 58, 0.2);
+}
+
+.feature-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #C41E3A;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 60px 20px;
+}
+
+.content-section h1 {
+    color: #C41E3A;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.content-section h2 {
+    color: #C41E3A;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content-section p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+/* Team Section */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member {
+    background: #FFF5F5;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #FFE5E8;
+}
+
+.team-member h3 {
+    color: #C41E3A;
+    margin-bottom: 0.5rem;
+}
+
+.team-member .role {
+    color: #E74C3C;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+/* Bread Gallery */
+.bread-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.bread-item {
+    background: #FFF5F5;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(196, 30, 58, 0.1);
+    border: 1px solid #FFE5E8;
+}
+
+.bread-item-content {
+    padding: 1.5rem;
+}
+
+.bread-item h3 {
+    color: #C41E3A;
+    margin-bottom: 0.5rem;
+}
+
+/* Impressum */
+.impressum-section {
+    background-color: #FFFFFF;
+}
+
+.impressum-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.impressum-content h2 {
+    color: #C41E3A;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.impressum-content p {
+    margin-bottom: 0.5rem;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+}
+
+/* Footer */
+footer {
+    background-color: #C41E3A;
+    color: white;
+    padding: 2rem 20px;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer a {
+    color: #FFB3BA;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: #C41E3A;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+        padding: 2rem 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .intro h2,
+    .content-section h1 {
+        font-size: 2rem;
+    }
+}
