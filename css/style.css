@@ -85,10 +85,10 @@ body {
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                url('../images/hero-bg.jpg') center/cover;
+                url('../images/unnamed.jpg') center/cover;
     background-color: #1a1a1a;
     background-size: cover;
-    background-position: center top;
+    background-position: center;
     background-repeat: no-repeat;
     color: white;
     padding: 100px 20px;
