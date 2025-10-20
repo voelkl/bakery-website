@@ -1,5 +1,77 @@
+// Load News from JSON
+async function loadNews() {
+    const newsContainer = document.getElementById('newsContainer');
+
+    if (!newsContainer) return; // Only run on pages with news container
+
+    // Show loading message
+    newsContainer.innerHTML = '<div class="news-loading">News werden geladen...</div>';
+
+    try {
+        const response = await fetch('news.json');
+        console.log(response)
+
+        if (!response.ok) {
+            throw new Error('News konnten nicht geladen werden');
+        }
+
+        const newsData = await response.json();
+
+        // Clear loading message
+        newsContainer.innerHTML = '';
+
+        // Sort news by date (newest first)
+        newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Display news items
+        newsData.forEach(news => {
+            const newsItem = document.createElement('div');
+            newsItem.className = 'news-item';
+
+            // Format date
+            const date = new Date(news.date);
+            const formattedDate = date.toLocaleDateString('de-DE', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            newsItem.innerHTML = `
+                <div class="news-item-date">${formattedDate}</div>
+                <h3>${news.title}</h3>
+                <p>${news.content}</p>
+            `;
+
+            // Set initial animation state
+            newsItem.style.opacity = '0';
+            newsItem.style.transform = 'translateY(20px)';
+            newsItem.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            newsContainer.appendChild(newsItem);
+        });
+
+        // If no news items
+        if (newsData.length === 0) {
+            newsContainer.innerHTML = '<div class="news-loading">Aktuell keine Neuigkeiten verfügbar.</div>';
+        } else {
+            // Trigger animation for news items using IntersectionObserver
+            const newsItems = newsContainer.querySelectorAll('.news-item');
+            newsItems.forEach(item => {
+                observer.observe(item);
+            });
+        }
+
+    } catch (error) {
+        newsContainer.innerHTML = '<div class="news-error">Fehler beim Laden der Neuigkeiten. Bitte versuchen Sie es später erneut.</div>';
+        console.error('Error loading news:', error);
+    }
+}
+
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Load news on homepage
+    loadNews();
+
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
 

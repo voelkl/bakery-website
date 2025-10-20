@@ -78,12 +78,19 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(196, 30, 58, 0.85), rgba(196, 30, 58, 0.85)),
+    background: linear-gradient(rgba(196, 30, 58, 0.5), rgba(196, 30, 58, 0.5)),
                 url('../images/hero-bg.jpg') center/cover;
     background-color: #C41E3A;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     color: white;
     padding: 100px 20px;
     text-align: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content h1 {
@@ -112,6 +119,72 @@ body {
     background-color: transparent;
     color: white;
     border-color: white;
+}
+
+/* News Section */
+.news-section {
+    padding: 60px 20px;
+    background-color: #FFF5F5;
+}
+
+.news-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #C41E3A;
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.news-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(196, 30, 58, 0.1);
+    border-left: 4px solid #C41E3A;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(196, 30, 58, 0.2);
+}
+
+.news-item-date {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.news-item h3 {
+    color: #C41E3A;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.news-item p {
+    line-height: 1.6;
+    color: #333;
+}
+
+.news-loading {
+    text-align: center;
+    padding: 2rem;
+    color: #888;
+}
+
+.news-error {
+    text-align: center;
+    padding: 2rem;
+    color: #C41E3A;
+    background: #FFE5E8;
+    border-radius: 10px;
 }
 
 /* Intro Section */
