@@ -106,12 +106,12 @@ body {
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                url('../images/unnamed.jpg') center/cover;
+                url('../images/bakery.jpeg') center/cover;
     background-color: #1a1a1a;
     color: white;
     padding: 80px 20px;
     text-align: center;
-    min-height: 350px;
+    min-height: 30rem;
     display: flex;
     align-items: center;
     justify-content: center;
