@@ -1,85 +1,77 @@
-// Load News from JSON
-async function loadNews() {
-    const newsContainer = document.getElementById('newsContainer');
+// Load News from Google Sheets via JSONP (avoids CORS)
+const SHEET_ID = '1ttaGMZtYAw1ptIaRGjyqsW9lyZ1fiBrKCMMOJ4YaThw';
 
-    if (!newsContainer) return; // Only run on pages with news container
+function hideNewsSection() {
+    const section = document.getElementById('neuigkeiten');
+    if (section) section.style.display = 'none';
+    const navLink = document.querySelector('a[href="#neuigkeiten"]');
+    if (navLink) navLink.style.display = 'none';
+}
 
-    // Show loading message
-    newsContainer.innerHTML = '<div class="news-loading">News werden geladen...</div>';
+function handleNewsData(response) {
+    const container = document.getElementById('newsContainer');
+    if (!container) return;
 
     try {
-        const response = await fetch('news.json');
-        console.log(response)
+        const rows = response.table.rows;
 
-        if (!response.ok) {
-            throw new Error('News konnten nicht geladen werden');
-        }
-
-        const newsData = await response.json();
-
-        // Clear loading message
-        newsContainer.innerHTML = '';
-
-        // Sort news by date (newest first)
-        newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        // Display news items
-        newsData.forEach(news => {
-            const newsItem = document.createElement('div');
-            newsItem.className = 'news-item';
-
-            // Format date
-            const date = new Date(news.date);
-            const formattedDate = date.toLocaleDateString('de-DE', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-
-            newsItem.innerHTML = `
-                <div class="news-item-date">${formattedDate}</div>
-                <h3>${news.title}</h3>
-                <p>${news.content}</p>
-            `;
-
-            // Set initial animation state
-            newsItem.style.opacity = '0';
-            newsItem.style.transform = 'translateY(20px)';
-            newsItem.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-
-            newsContainer.appendChild(newsItem);
+        // Skip header row if present
+        const dataRows = rows.filter(row => {
+            const title = row.c[1] ? row.c[1].v : '';
+            return title && title !== 'Titel';
         });
 
-        // If no news items
-        if (newsData.length === 0) {
-            newsContainer.innerHTML = '<div class="news-loading">Aktuell keine Neuigkeiten verfügbar.</div>';
-        } else {
-            // Trigger animation for news items using IntersectionObserver
-            const newsItems = newsContainer.querySelectorAll('.news-item');
-            newsItems.forEach(item => {
-                observer.observe(item);
-            });
+        if (dataRows.length === 0) {
+            hideNewsSection();
+            return;
         }
 
+        // Sort by date descending (newest first)
+        dataRows.sort((a, b) => {
+            const dateA = a.c[0] ? a.c[0].f : '';
+            const dateB = b.c[0] ? b.c[0].f : '';
+            return dateB.localeCompare(dateA);
+        });
+
+        container.innerHTML = '';
+        dataRows.forEach(row => {
+            const date = row.c[0] ? row.c[0].f : '';
+            const title = row.c[1] ? row.c[1].v : '';
+            const content = row.c[2] ? row.c[2].v : '';
+
+            const item = document.createElement('div');
+            item.className = 'news-item';
+            item.innerHTML = `
+                <div class="news-item-date">${date}</div>
+                <h3>${title}</h3>
+                <p>${content}</p>
+            `;
+            container.appendChild(item);
+        });
     } catch (error) {
-        newsContainer.innerHTML = '<div class="news-error">Fehler beim Laden der Neuigkeiten. Bitte versuchen Sie es später erneut.</div>';
-        console.error('Error loading news:', error);
+        hideNewsSection();
+        console.error('News loading error:', error);
     }
+}
+
+function loadNews() {
+    if (!document.getElementById('newsContainer')) return;
+
+    const script = document.createElement('script');
+    script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=responseHandler:handleNewsData`;
+    script.onerror = hideNewsSection;
+    document.head.appendChild(script);
 }
 
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
-    // Load news on homepage
     loadNews();
-
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
 
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
             navMenu.classList.toggle('active');
-
-            // Animate hamburger icon
             hamburger.classList.toggle('active');
         });
 
@@ -94,10 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            const isClickInsideNav = navMenu.contains(event.target);
-            const isClickOnHamburger = hamburger.contains(event.target);
-
-            if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
+            if (!navMenu.contains(event.target) && !hamburger.contains(event.target) && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
             }
@@ -107,44 +96,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href !== '#' && href.length > 1) {
             e.preventDefault();
             const target = document.querySelector(href);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                const navbar = document.querySelector('.navbar');
+                const offset = navbar ? navbar.offsetHeight : 0;
+                const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
             }
         }
-    });
-});
-
-// Add animation on scroll (optional enhancement)
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe feature cards and team members for scroll animations
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.feature-card, .team-member, .bread-item');
-
-    animatedElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(element);
     });
 });

@@ -27,7 +27,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 3px solid #dc3545;
+    border-bottom: 3px solid #9B1B4D;
 }
 
 .nav-container {
@@ -47,7 +47,28 @@ body {
 }
 
 .nav-logo:hover {
-    color: #dc3545;
+    color: #9B1B4D;
+}
+
+.nav-logo-img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.hero-logo {
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto 1.5rem;
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.footer-logo {
+    max-width: 80px;
+    height: auto;
+    margin: 0 auto 1rem;
+    display: block;
 }
 
 .nav-menu {
@@ -64,7 +85,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #dc3545;
+    color: #9B1B4D;
 }
 
 /* Hamburger Menu */
@@ -87,13 +108,10 @@ body {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
                 url('../images/unnamed.jpg') center/cover;
     background-color: #1a1a1a;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     color: white;
-    padding: 100px 20px;
+    padding: 80px 20px;
     text-align: center;
-    min-height: 400px;
+    min-height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,25 +124,84 @@ body {
 
 .hero-content p {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
 }
 
-.btn {
-    display: inline-block;
-    background-color: #dc3545;
-    color: white;
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border: 2px solid #dc3545;
+/* About Section */
+.about-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
 }
 
-.btn:hover {
-    background-color: white;
-    color: #dc3545;
-    border-color: white;
+.about-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #9B1B4D;
+}
+
+.about-section p {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* News Section */
+.news-section {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+}
+
+.news-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #9B1B4D;
+}
+
+.news-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.news-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #9B1B4D;
+}
+
+.news-item-date {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+}
+
+.news-item h3 {
+    color: #9B1B4D;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.news-item p {
+    line-height: 1.6;
+    color: #333;
+}
+
+.news-loading,
+.news-error {
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+}
+
+.news-error {
+    color: #9B1B4D;
 }
 
 /* Opening Hours Section */
@@ -141,10 +218,9 @@ body {
 }
 
 .opening-hours-box h2 {
-    color: #dc3545;
-    font-size: 2.5rem;
+    color: #9B1B4D;
+    font-size: 2rem;
     margin-bottom: 1.5rem;
-    text-align: center;
 }
 
 .hours-grid {
@@ -171,24 +247,17 @@ body {
     font-size: 1rem;
 }
 
-@media (max-width: 768px) {
-    .hours-grid {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-}
-
 /* Map Section */
 .map-section {
-    padding: 60px 20px;
+    padding: 40px 20px;
     background-color: #ffffff;
 }
 
 .map-section h2 {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #dc3545;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #9B1B4D;
 }
 
 .map-container {
@@ -198,16 +267,16 @@ body {
 
 .map-container iframe {
     width: 100%;
-    height: 450px;
+    height: 350px;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .map-address {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     text-align: center;
-    padding: 1.5rem;
+    padding: 1rem;
     background: #f8f9fa;
     border-radius: 10px;
 }
@@ -218,13 +287,13 @@ body {
 }
 
 .map-address strong {
-    color: #dc3545;
+    color: #9B1B4D;
 }
 
 .map-address a {
     display: inline-block;
-    margin-top: 1rem;
-    color: #dc3545;
+    margin-top: 0.5rem;
+    color: #9B1B4D;
     text-decoration: none;
     font-weight: 600;
 }
@@ -233,133 +302,19 @@ body {
     text-decoration: underline;
 }
 
-/* News Section */
-.news-section {
-    padding: 60px 20px;
-    background-color: #f8f9fa;
-}
-
-.news-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #dc3545;
-}
-
-.news-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.news-item {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #dc3545;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.news-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.news-item-date {
-    color: #888;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.news-item h3 {
-    color: #dc3545;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.news-item p {
-    line-height: 1.6;
-    color: #333;
-}
-
-.news-loading {
-    text-align: center;
-    padding: 2rem;
-    color: #888;
-}
-
-.news-error {
-    text-align: center;
-    padding: 2rem;
-    color: #dc3545;
-    background: #ffe6e6;
-    border-radius: 10px;
-}
-
-/* Intro Section */
-.intro {
-    padding: 60px 20px;
-    background-color: #FFFFFF;
-}
-
-.intro h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #dc3545;
-}
-
-.intro > .container > p {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-    font-size: 1.1rem;
-}
-
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.feature-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.feature-card h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #dc3545;
-}
-
-/* Content Sections */
+/* Content Sections (Impressum) */
 .content-section {
     padding: 60px 20px;
 }
 
 .content-section h1 {
-    color: #dc3545;
+    color: #9B1B4D;
     margin-bottom: 1.5rem;
     font-size: 2.5rem;
 }
 
 .content-section h2 {
-    color: #dc3545;
+    color: #9B1B4D;
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
@@ -367,59 +322,6 @@ body {
 .content-section p {
     margin-bottom: 1rem;
     line-height: 1.8;
-}
-
-/* Team Section */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.team-member {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.team-member h3 {
-    color: #dc3545;
-    margin-bottom: 0.5rem;
-}
-
-.team-member .role {
-    color: #666;
-    font-style: italic;
-    margin-bottom: 1rem;
-}
-
-/* Bread Gallery */
-.bread-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.bread-item {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
-}
-
-.bread-item-content {
-    padding: 1.5rem;
-}
-
-.bread-item h3 {
-    color: #dc3545;
-    margin-bottom: 0.5rem;
 }
 
 /* Impressum */
@@ -433,7 +335,7 @@ body {
 }
 
 .impressum-content h2 {
-    color: #dc3545;
+    color: #9B1B4D;
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
@@ -454,11 +356,11 @@ footer {
     padding: 2rem 20px;
     text-align: center;
     margin-top: auto;
-    border-top: 3px solid #dc3545;
+    border-top: 3px solid #9B1B4D;
 }
 
 footer a {
-    color: #dc3545;
+    color: #9B1B4D;
     text-decoration: none;
     font-weight: 500;
 }
@@ -480,7 +382,7 @@ footer a:hover {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0,0,0,0.15);
         padding: 2rem 0;
-        border-bottom: 3px solid #dc3545;
+        border-bottom: 3px solid #9B1B4D;
     }
 
     .nav-menu.active {
@@ -499,7 +401,11 @@ footer a:hover {
         font-size: 1.2rem;
     }
 
-    .intro h2,
+    .hours-grid {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
     .content-section h1 {
         font-size: 2rem;
     }
